@@ -1,5 +1,4 @@
-import sys, time, re, socket
-import requests, json, psycopg2
+import sys, time, re, socket, psycopg2
 from db_con import conn, cur
 
 
