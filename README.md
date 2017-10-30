@@ -23,6 +23,6 @@ Makes an API call to NetBox and returns the list of IPv4 prefixes, then saves th
 ## fping.sh
 Runs fping against each subnet found in **fping_prefixes** file and saves "Alive" hosts in **fping_hosts** file. 
 
-## fping.sh
+## fping.py
 Adds unique entries found **fping_hosts** file and ultimately adds them to NetBox. 
 
