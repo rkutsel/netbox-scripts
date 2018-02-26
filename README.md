@@ -1,28 +1,15 @@
-# NetBox custom scripts (Python 2.7)
-This is an attempt to share some of my work with the [NetBox](https://github.com/digitalocean/netbox) community. I plan on adding more scripts later on.
-# Dependencies
-Make sure you have all dependencies installed i.e.  
+AWS Direct-Connect set up | Python 2.7 and 3.5. Python 3.5 or higher is recommended
+--------------------------------
+
+First step is to install dependencies. Run:
 ```
-$sudo pip install sys, time, re, socket, psycopg2
+pip3 install -r requirements.txt --upgrade
 ```
-If you don't have pip installed then follow this [guide](https://pip.pypa.io/en/stable/installing/) 
-# Installation
-Clone the repository and modify **db_con.py** file with your DB information i.e.
-```python
-import psycopg2
-conn = psycopg2.connect("dbname='YOUR_NETBOX_DB_NAME' user='YOUR_NETBOX_USERNAME' host='YOUR_NETBOX_DB_IP_ADDRESS' password='YOUR_NETBOX_DB_PASSWORD'")
-cur = conn.cursor()
+Then modify apy.py file by putting your [NetBox Token](https://netbox-url/user/profile/):
+```
+headers = {'Authorization': 'Token 11111111111111111111111'}
 ```
 
-## ipam_mgmt.py 
-The script attmepts to resolve each hostname in netbox DB then creates a **"mgmt"** interface with its corresponding IPv4/IPv6 addresses. 
+At this point you should be good to go. The only information you'll need are AWS account number && name of the AWS virtual interface(s).
 
-## fping_prefixes.py 
-Makes an API call to NetBox and returns the list of IPv4 prefixes, then saves the list of returned prefixes to **fping_prefixes file**. 
-
-## fping.sh
-Runs fping against each subnet found in **fping_prefixes** file and saves "Alive" hosts in **fping_hosts** file. 
-
-## fping.py
-Adds unique entries found **fping_hosts** file and ultimately adds them to NetBox. 
-
+The assumption here is that there's two environments: PROD & STAGE with preallocated prefixes: 169.254.0.0/20 for STAGE & 169.254.16.0/20 for PROD. You can easily expand/modify that functionality by adding another function(s) in api.py for as many environments as you have.
