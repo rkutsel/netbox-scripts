@@ -5,7 +5,7 @@ First step is to install dependencies. Run:
 ```
 pip3 install -r requirements.txt --upgrade
 ```
-Then modify apy.py file by putting your [NetBox Token](https://netbox-url/user/profile/):
+Then modify apy.py file by putting your [NetBox Token](https://netbox.readthedocs.io/en/latest/api/authentication/):
 ```
 headers = {'Authorization': 'Token 11111111111111111111111'}
 ```
